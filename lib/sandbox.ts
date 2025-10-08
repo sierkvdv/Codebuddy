@@ -77,7 +77,7 @@ export function runCodeInSandbox(code: string, testInput?: any): SandboxResult {
 }
 
 // Run multiple test cases
-export function runTests(code: string, tests: Array<{ input: any; expectedOutput: any }>) {
+export function runTests(code: string, tests: Array<{ input: any; expectedOutput: any; description?: string }>) {
   return tests.map((test) => {
     const result = runCodeInSandbox(code, test.input);
     
