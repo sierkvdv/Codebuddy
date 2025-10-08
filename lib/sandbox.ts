@@ -37,7 +37,7 @@ export function runCodeInSandbox(code: string, testInput?: any): SandboxResult {
       Boolean,
       Object,
       JSON,
-      Date: Date, // Allow but note: could be used for timing attacks
+      Date: Date,
       // Explicitly exclude dangerous globals
       eval: undefined,
       Function: undefined,
@@ -47,24 +47,16 @@ export function runCodeInSandbox(code: string, testInput?: any): SandboxResult {
       XMLHttpRequest: undefined,
     };
 
-    // Wrap the code in a function to isolate scope
+    // Simple approach: just execute the code and see what happens
     const wrappedCode = `
-      "use strict";
       ${code}
       
-      // Try to find and call the main function
+      // Try to call main function if it exists
       if (typeof main === 'function') {
         return main(${JSON.stringify(testInput)});
       }
       
-      // If no main function, try to find any function and call it with test input
-      const functionNames = Object.keys(this).filter(key => typeof this[key] === 'function' && key !== 'main');
-      if (functionNames.length > 0) {
-        const funcName = functionNames[0];
-        return this[funcName](${JSON.stringify(testInput)});
-      }
-      
-      // If still no function found, return undefined
+      // If no main function, return undefined (code executed but no return value)
       return undefined;
     `;
 
@@ -89,7 +81,19 @@ export function runCodeInSandbox(code: string, testInput?: any): SandboxResult {
 // Run multiple test cases
 export function runTests(code: string, tests: Array<{ input: any; expectedOutput: any; description?: string }>) {
   return tests.map((test) => {
-    const result = runCodeInSandbox(code, test.input);
+    // Extract function name from code (simple regex)
+    const functionMatch = code.match(/function\s+(\w+)\s*\(/);
+    const functionName = functionMatch ? functionMatch[1] : null;
+    
+    let result;
+    if (functionName) {
+      // Create code that calls the function with test input
+      const testCode = `${code}\nreturn ${functionName}(${JSON.stringify(test.input)});`;
+      result = runCodeInSandbox(testCode);
+    } else {
+      // Fallback to original approach
+      result = runCodeInSandbox(code, test.input);
+    }
     
     return {
       passed: result.success && JSON.stringify(result.output) === JSON.stringify(test.expectedOutput),
