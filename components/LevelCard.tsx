@@ -46,7 +46,7 @@ export default function LevelCard({
           {/* Level number badge */}
           <div className="flex items-start justify-between mb-3">
             <div className="bg-gradient-to-r from-blue-500 to-purple-600 text-white text-sm font-bold px-3 py-1 rounded-full">
-              Level {level.order}
+              Level {level.levelNumber}
             </div>
 
             {/* Completion status */}
@@ -74,7 +74,7 @@ export default function LevelCard({
           <div className="flex items-center justify-between text-sm">
             <div className="flex items-center gap-1 text-purple-600">
               <Trophy className="w-4 h-4" />
-              <span className="font-semibold">{level.xpReward} XP</span>
+              <span className="font-semibold">100 XP</span>
             </div>
 
             {!isLocked && !isCompleted && (
