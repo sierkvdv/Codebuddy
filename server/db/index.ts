@@ -135,9 +135,19 @@ export async function getChallengeProgress(userId: string, challengeId: string) 
 }
 
 export async function incrementUserXP(userId: string, xpAmount: number) {
+  // First get current XP
+  const { data: currentProfile, error: fetchError } = await supabase
+    .from('profiles')
+    .select('xp')
+    .eq('user_id', userId)
+    .single();
+  
+  if (fetchError) throw fetchError;
+  
+  // Update with new XP
   const { data, error } = await supabase
     .from('profiles')
-    .update({ xp: supabase.raw('xp + ?', [xpAmount]) })
+    .update({ xp: (currentProfile.xp || 0) + xpAmount })
     .eq('user_id', userId)
     .select()
     .single();
