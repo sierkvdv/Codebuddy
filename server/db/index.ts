@@ -1,22 +1,6 @@
-import { supabaseAdmin } from "@/lib/supabase";
-import type {
-  World,
-  Level,
-  Challenge,
-  Profile,
-  Submission,
-  Progress,
-  ProgressStatus,
-  SubmissionStatus,
-  Badge,
-  UserBadge,
-  AIFeedbackLog,
-} from "@/types/db";
-
-/**
- * Database helper functions using Supabase
- * Updated to match the new schema with UUIDs and proper relationships
- */
+// TEMPORARY: Using mock database for initial Vercel deployment
+// This will be replaced with real Supabase once connected via Vercel
+export * from "./mock";
 
 // ============================================================================
 // PROFILES
