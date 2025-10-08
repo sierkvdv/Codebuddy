@@ -210,8 +210,8 @@ export async function getUserBadges(userId: string) {
 }
 
 export async function updateProfile(userId: string, data: {
-  display_name?: string;
-  avatar_url?: string;
+  displayName?: string;
+  avatarUrl?: string;
 }) {
   const { data: result, error } = await supabase
     .from('profiles')
