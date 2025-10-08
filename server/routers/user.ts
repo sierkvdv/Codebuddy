@@ -12,33 +12,16 @@ export const userRouter = createTRPCRouter({
    * user.getProfile
    * Returns profile details, XP, badges, and settings
    */
-  getProfile: protectedProcedure.query(async ({ ctx }) => {
-    const userId = ctx.user.id;
-
-    const profile = await getProfileByUserId(userId);
-    if (!profile) {
-      throw new TRPCError({
-        code: "NOT_FOUND",
-        message: "Profile not found",
-      });
-    }
-
-    // Calculate level from XP
-    const level = Math.floor(profile.xp / 500);
-
+  getProfile: publicProcedure.query(async () => {
+    // Return a mock profile for testing
     return {
-      id: profile.id,
-      userId: profile.userId,
-      displayName: profile.displayName,
-      avatarUrl: profile.avatarUrl,
-      xp: profile.xp,
-      level,
-      settings: {
-        // Placeholder for future settings
-        theme: "light",
-        soundEnabled: true,
-        notificationsEnabled: true,
-      },
+      id: "mock-user-id",
+      userId: "mock-user-id",
+      displayName: "Demo User",
+      avatarUrl: null,
+      xp: 0,
+      createdAt: new Date(),
+      level: 0,
     };
   }),
 

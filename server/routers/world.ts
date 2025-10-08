@@ -17,10 +17,10 @@ export const worldRouter = createTRPCRouter({
    * world.list
    * Returns all worlds with progress summary for the authenticated user
    */
-  list: protectedProcedure.query(async ({ ctx }) => {
-    const userId = ctx.user.id;
+  list: publicProcedure.query(async () => {
     const worlds = await getAllWorlds();
-    const userProgress = await getUserProgress(userId);
+    // For now, return empty progress since we don't have auth
+    const userProgress: any[] = [];
 
     // Calculate progress summary for each world
     const worldsWithProgress = await Promise.all(
@@ -57,12 +57,12 @@ export const worldRouter = createTRPCRouter({
    * Returns levels for a given world with lock status for the user
    * Input: { worldId: string }
    */
-  getLevels: protectedProcedure
+  getLevels: publicProcedure
     .input(z.object({ worldId: z.string().uuid() }))
-    .query(async ({ ctx, input }) => {
-      const userId = ctx.user.id;
+    .query(async ({ input }) => {
       const levels = await getLevelsByWorldId(input.worldId);
-      const userProgress = await getUserProgress(userId);
+      // For now, return empty progress since we don't have auth
+      const userProgress: any[] = [];
 
       // Determine lock status for each level
       const levelsWithStatus = await Promise.all(
