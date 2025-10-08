@@ -52,10 +52,20 @@ export function runCodeInSandbox(code: string, testInput?: any): SandboxResult {
       "use strict";
       ${code}
       
-      // If there's a main function defined, call it
+      // Try to find and call the main function
       if (typeof main === 'function') {
         return main(${JSON.stringify(testInput)});
       }
+      
+      // If no main function, try to find any function and call it with test input
+      const functionNames = Object.keys(this).filter(key => typeof this[key] === 'function' && key !== 'main');
+      if (functionNames.length > 0) {
+        const funcName = functionNames[0];
+        return this[funcName](${JSON.stringify(testInput)});
+      }
+      
+      // If still no function found, return undefined
+      return undefined;
     `;
 
     // Create function with restricted scope
