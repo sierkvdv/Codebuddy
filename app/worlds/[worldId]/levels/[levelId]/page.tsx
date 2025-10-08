@@ -28,7 +28,7 @@ export default function ChallengePage() {
 
   const submitCode = trpc.submission.submit.useMutation();
 
-  const level = levels?.find((l) => l.id === levelId);
+  const level = levels?.find((l: any) => l.id === levelId);
 
   // Auto-select first challenge
   const challenge = selectedChallengeId
