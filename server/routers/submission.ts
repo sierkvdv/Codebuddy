@@ -52,7 +52,7 @@ export const submissionRouter = createTRPCRouter({
       const submission = await createSubmission(userId, challengeId, code, "pending");
 
       // Run test suite
-      const testResults = runTests(code, challenge.testCases);
+      const testResults = runTests(code, challenge.testCases as Array<{ input: any; expectedOutput: any; description?: string }>);
       const allTestsPassed = testResults.every((t) => t.passed);
 
       // Determine result

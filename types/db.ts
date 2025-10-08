@@ -62,7 +62,7 @@ export const ChallengeSchema = z.object({
       expectedOutput: z.any(),
       description: z.string().optional(),
     })
-  ),
+  ).default([]),
   createdAt: z.date(),
 });
 
