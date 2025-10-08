@@ -49,7 +49,12 @@ export const submissionRouter = createTRPCRouter({
       }
 
       // Create submission (status: pending)
-      const submission = await createSubmission(userId, challengeId, code, "pending");
+      const submission = await createSubmission({
+        challenge_id: challengeId,
+        user_id: userId,
+        code,
+        status: "pending"
+      });
 
       // Run test suite
       const testResults = runTests(code, challenge.testCases as Array<{ input: any; expectedOutput: any; description?: string }>);
