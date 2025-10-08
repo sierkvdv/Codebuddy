@@ -1,0 +1,32 @@
+[
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440001",
+    "name": "If Forest",
+    "description": "Journey through the magical If Forest where you'll learn to make decisions in your code using if-else statements.",
+    "order": 1
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440002",
+    "name": "Loop Lagoon",
+    "description": "Dive into Loop Lagoon to master the art of repetition with for and while loops.",
+    "order": 2
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440003",
+    "name": "Function Factory",
+    "description": "Work in the Function Factory to build reusable code machines using functions and parameters.",
+    "order": 3
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440004",
+    "name": "Array Archipelago",
+    "description": "Explore the islands of Array Archipelago and learn to organize data in lists and collections.",
+    "order": 4
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440005",
+    "name": "Object Oasis",
+    "description": "Discover the Object Oasis where you'll create complex data structures and understand object-oriented programming.",
+    "order": 5
+  }
+]

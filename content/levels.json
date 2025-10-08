@@ -1,0 +1,72 @@
+[
+  {
+    "id": "650e8400-e29b-41d4-a716-446655440001",
+    "worldId": "550e8400-e29b-41d4-a716-446655440001",
+    "name": "The First Decision",
+    "description": "Learn to use if statements to make your first coding decision.",
+    "levelNumber": 1
+  },
+  {
+    "id": "650e8400-e29b-41d4-a716-446655440002",
+    "worldId": "550e8400-e29b-41d4-a716-446655440001",
+    "name": "Either This or That",
+    "description": "Master if-else statements to choose between two paths.",
+    "levelNumber": 2
+  },
+  {
+    "id": "650e8400-e29b-41d4-a716-446655440003",
+    "worldId": "550e8400-e29b-41d4-a716-446655440001",
+    "name": "Multiple Choices",
+    "description": "Use else-if to handle multiple conditions.",
+    "levelNumber": 3
+  },
+  {
+    "id": "650e8400-e29b-41d4-a716-446655440004",
+    "worldId": "550e8400-e29b-41d4-a716-446655440002",
+    "name": "The Counting Loop",
+    "description": "Create your first for loop to count numbers.",
+    "levelNumber": 1
+  },
+  {
+    "id": "650e8400-e29b-41d4-a716-446655440005",
+    "worldId": "550e8400-e29b-41d4-a716-446655440002",
+    "name": "While It's True",
+    "description": "Learn while loops for conditional repetition.",
+    "levelNumber": 2
+  },
+  {
+    "id": "650e8400-e29b-41d4-a716-446655440006",
+    "worldId": "550e8400-e29b-41d4-a716-446655440003",
+    "name": "Your First Function",
+    "description": "Build your first reusable function.",
+    "levelNumber": 1
+  },
+  {
+    "id": "650e8400-e29b-41d4-a716-446655440007",
+    "worldId": "550e8400-e29b-41d4-a716-446655440003",
+    "name": "Function with Parameters",
+    "description": "Make functions flexible with parameters.",
+    "levelNumber": 2
+  },
+  {
+    "id": "650e8400-e29b-41d4-a716-446655440008",
+    "worldId": "550e8400-e29b-41d4-a716-446655440004",
+    "name": "Creating Your First Array",
+    "description": "Learn to store multiple values in an array.",
+    "levelNumber": 1
+  },
+  {
+    "id": "650e8400-e29b-41d4-a716-446655440009",
+    "worldId": "550e8400-e29b-41d4-a716-446655440004",
+    "name": "Accessing Array Items",
+    "description": "Retrieve specific items from an array using indices.",
+    "levelNumber": 2
+  },
+  {
+    "id": "650e8400-e29b-41d4-a716-446655440010",
+    "worldId": "550e8400-e29b-41d4-a716-446655440005",
+    "name": "Your First Object",
+    "description": "Create an object with properties.",
+    "levelNumber": 1
+  }
+]

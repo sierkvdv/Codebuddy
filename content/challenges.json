@@ -1,0 +1,212 @@
+[
+  {
+    "id": "750e8400-e29b-41d4-a716-446655440001",
+    "levelId": "650e8400-e29b-41d4-a716-446655440001",
+    "title": "Check if Positive",
+    "prompt": "Write a function called `isPositive` that takes a number and returns true if it's positive (greater than 0), otherwise returns false.",
+    "blockDefinition": null,
+    "testCases": [
+      {
+        "input": 5,
+        "expectedOutput": true,
+        "description": "Positive number should return true"
+      },
+      {
+        "input": -3,
+        "expectedOutput": false,
+        "description": "Negative number should return false"
+      },
+      {
+        "input": 0,
+        "expectedOutput": false,
+        "description": "Zero should return false"
+      }
+    ]
+  },
+  {
+    "id": "750e8400-e29b-41d4-a716-446655440002",
+    "levelId": "650e8400-e29b-41d4-a716-446655440002",
+    "title": "Voting Age Check",
+    "prompt": "Create a function called `canVote` that takes an age and returns 'Yes, you can vote!' if the age is 18 or older, otherwise returns 'Sorry, too young to vote.'",
+    "blockDefinition": null,
+    "testCases": [
+      {
+        "input": 18,
+        "expectedOutput": "Yes, you can vote!",
+        "description": "Age 18 can vote"
+      },
+      {
+        "input": 25,
+        "expectedOutput": "Yes, you can vote!",
+        "description": "Age 25 can vote"
+      },
+      {
+        "input": 16,
+        "expectedOutput": "Sorry, too young to vote.",
+        "description": "Age 16 cannot vote"
+      }
+    ]
+  },
+  {
+    "id": "750e8400-e29b-41d4-a716-446655440003",
+    "levelId": "650e8400-e29b-41d4-a716-446655440003",
+    "title": "Grade Evaluator",
+    "prompt": "Write a function called `gradeEvaluator` that takes a score (0-100) and returns 'A' for 90+, 'B' for 80-89, 'C' for 70-79, 'D' for 60-69, and 'F' for below 60.",
+    "blockDefinition": null,
+    "testCases": [
+      {
+        "input": 95,
+        "expectedOutput": "A",
+        "description": "Score 95 is an A"
+      },
+      {
+        "input": 82,
+        "expectedOutput": "B",
+        "description": "Score 82 is a B"
+      },
+      {
+        "input": 70,
+        "expectedOutput": "C",
+        "description": "Score 70 is a C"
+      },
+      {
+        "input": 55,
+        "expectedOutput": "F",
+        "description": "Score 55 is an F"
+      }
+    ]
+  },
+  {
+    "id": "750e8400-e29b-41d4-a716-446655440004",
+    "levelId": "650e8400-e29b-41d4-a716-446655440004",
+    "title": "Count to N",
+    "prompt": "Create a function called `countToN` that takes a number n and returns an array containing numbers from 1 to n.",
+    "blockDefinition": null,
+    "testCases": [
+      {
+        "input": 5,
+        "expectedOutput": [1, 2, 3, 4, 5],
+        "description": "Count from 1 to 5"
+      },
+      {
+        "input": 3,
+        "expectedOutput": [1, 2, 3],
+        "description": "Count from 1 to 3"
+      },
+      {
+        "input": 1,
+        "expectedOutput": [1],
+        "description": "Count to 1"
+      }
+    ]
+  },
+  {
+    "id": "750e8400-e29b-41d4-a716-446655440005",
+    "levelId": "650e8400-e29b-41d4-a716-446655440005",
+    "title": "Sum Until N",
+    "prompt": "Write a function called `sumUntil` that takes a number n and returns the sum of all numbers from 1 to n using a while loop.",
+    "blockDefinition": null,
+    "testCases": [
+      {
+        "input": 5,
+        "expectedOutput": 15,
+        "description": "Sum of 1+2+3+4+5 = 15"
+      },
+      {
+        "input": 3,
+        "expectedOutput": 6,
+        "description": "Sum of 1+2+3 = 6"
+      },
+      {
+        "input": 1,
+        "expectedOutput": 1,
+        "description": "Sum of 1 = 1"
+      }
+    ]
+  },
+  {
+    "id": "750e8400-e29b-41d4-a716-446655440006",
+    "levelId": "650e8400-e29b-41d4-a716-446655440006",
+    "title": "Say Hello",
+    "prompt": "Create a function called `sayHello` that takes no parameters and returns the string 'Hello, World!'.",
+    "blockDefinition": null,
+    "testCases": [
+      {
+        "input": null,
+        "expectedOutput": "Hello, World!",
+        "description": "Returns greeting"
+      }
+    ]
+  },
+  {
+    "id": "750e8400-e29b-41d4-a716-446655440007",
+    "levelId": "650e8400-e29b-41d4-a716-446655440007",
+    "title": "Greet by Name",
+    "prompt": "Write a function called `greet` that takes a name parameter and returns 'Hello, [name]!' (e.g., 'Hello, Alice!').",
+    "blockDefinition": null,
+    "testCases": [
+      {
+        "input": "Alice",
+        "expectedOutput": "Hello, Alice!",
+        "description": "Greet Alice"
+      },
+      {
+        "input": "Bob",
+        "expectedOutput": "Hello, Bob!",
+        "description": "Greet Bob"
+      }
+    ]
+  },
+  {
+    "id": "750e8400-e29b-41d4-a716-446655440008",
+    "levelId": "650e8400-e29b-41d4-a716-446655440008",
+    "title": "Create Fruit Array",
+    "prompt": "Create a function called `createFruitArray` that returns an array containing three fruits: 'apple', 'banana', and 'orange'.",
+    "blockDefinition": null,
+    "testCases": [
+      {
+        "input": null,
+        "expectedOutput": ["apple", "banana", "orange"],
+        "description": "Returns array of fruits"
+      }
+    ]
+  },
+  {
+    "id": "750e8400-e29b-41d4-a716-446655440009",
+    "levelId": "650e8400-e29b-41d4-a716-446655440009",
+    "title": "Get Second Item",
+    "prompt": "Write a function called `getSecondItem` that takes an array and returns the second item (index 1).",
+    "blockDefinition": null,
+    "testCases": [
+      {
+        "input": [10, 20, 30],
+        "expectedOutput": 20,
+        "description": "Second item of [10, 20, 30] is 20"
+      },
+      {
+        "input": ["a", "b", "c"],
+        "expectedOutput": "b",
+        "description": "Second item of ['a', 'b', 'c'] is 'b'"
+      }
+    ]
+  },
+  {
+    "id": "750e8400-e29b-41d4-a716-446655440010",
+    "levelId": "650e8400-e29b-41d4-a716-446655440010",
+    "title": "Create Person Object",
+    "prompt": "Create a function called `createPerson` that takes a name and age, and returns an object with properties 'name' and 'age'.",
+    "blockDefinition": null,
+    "testCases": [
+      {
+        "input": ["Alice", 25],
+        "expectedOutput": { "name": "Alice", "age": 25 },
+        "description": "Create person object for Alice, 25"
+      },
+      {
+        "input": ["Bob", 30],
+        "expectedOutput": { "name": "Bob", "age": 30 },
+        "description": "Create person object for Bob, 30"
+      }
+    ]
+  }
+]
