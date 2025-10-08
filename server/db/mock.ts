@@ -62,13 +62,10 @@ const mockChallenges: Challenge[] = [
     testCases: [
       {
         input: "",
-        expected: "Hello, World!",
+        expectedOutput: "Hello, World!",
         description: "Variable should contain the correct message"
       }
     ],
-    solution: "const message = 'Hello, World!';",
-    difficulty: "beginner",
-    order: 1,
     createdAt: new Date(),
   },
 ];
