@@ -34,7 +34,7 @@ export default function WorldCard({ world, progress, delay = 0 }: WorldCardProps
           }`}
         >
           {/* Icon */}
-          <div className="text-5xl mb-4">{world.icon || "🌍"}</div>
+          <div className="text-5xl mb-4">🌍</div>
 
           {/* Title */}
           <h3 className="text-2xl font-bold mb-2 text-gray-800">{world.name}</h3>
