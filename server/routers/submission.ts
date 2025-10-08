@@ -83,12 +83,22 @@ export const submissionRouter = createTRPCRouter({
         }
 
         // Update progress to completed
-        await updateProgress(userId, challenge.levelId, challengeId, "completed", 100);
+        await updateProgress({
+          user_id: userId,
+          level_id: challenge.levelId,
+          challenge_id: challengeId,
+          status: "completed",
+          score: 100
+        });
 
         // Log AI feedback
-        await createAIFeedbackLog(submission.id, userId, {
-          message: feedback,
-          encouragement: "Keep up the great work! 🚀",
+        await createAIFeedbackLog({
+          submission_id: submission.id,
+          user_id: userId,
+          feedback: {
+            message: feedback,
+            encouragement: "Keep up the great work! 🚀",
+          }
         });
       } else {
         // Call AI feedback endpoint for failed attempts
@@ -114,10 +124,14 @@ export const submissionRouter = createTRPCRouter({
             feedback = data.message || "Keep trying! Review the challenge requirements.";
 
             // Log AI feedback
-            await createAIFeedbackLog(submission.id, userId, {
-              message: feedback,
-              hints: data.hints || [],
-              encouragement: data.encouragement || "You can do it!",
+            await createAIFeedbackLog({
+              submission_id: submission.id,
+              user_id: userId,
+              feedback: {
+                message: feedback,
+                hints: data.hints || [],
+                encouragement: data.encouragement || "You can do it!",
+              }
             });
           } else {
             feedback = "Not quite right. Check your logic and try again!";
