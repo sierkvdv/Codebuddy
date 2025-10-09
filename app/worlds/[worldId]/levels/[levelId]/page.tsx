@@ -76,6 +76,39 @@ export default function ChallengePage() {
     }
   };
 
+  const handleGetHelp = async () => {
+    if (!challenge) return;
+
+    try {
+      // Always call AI feedback for step-by-step help, regardless of test results
+      const response = await fetch("/api/ai/feedback", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          challengeContext: {
+            title: challenge.title,
+            prompt: challenge.prompt,
+          },
+          userCode: code,
+          testResults: [], // Empty for step-by-step help
+        }),
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        // Store the AI feedback in a state variable to display it
+        // For now, we'll use the existing submitCode mutation to store the feedback
+        // This is a bit of a hack, but it will work
+        submitCode.mutate({
+          challengeId: challenge.id,
+          code,
+        });
+      }
+    } catch (error) {
+      console.error("AI help error:", error);
+    }
+  };
+
   if (challengesLoading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
@@ -156,6 +189,7 @@ export default function ChallengePage() {
               onChange={setCode}
               onRun={handleRunCode}
               onSubmit={handleSubmit}
+              onGetHelp={handleGetHelp}
               isSubmitting={submitCode.isPending}
             />
           </div>

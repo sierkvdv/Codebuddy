@@ -10,6 +10,7 @@ interface EditorProps {
   onChange: (value: string) => void;
   onRun: () => void;
   onSubmit: () => void;
+  onGetHelp?: () => void;
   isSubmitting?: boolean;
   language?: string;
   theme?: string;
@@ -30,6 +31,7 @@ export default function Editor({
   onChange,
   onRun,
   onSubmit,
+  onGetHelp,
   isSubmitting = false,
   language = "javascript",
   theme = "vs-dark",
@@ -191,11 +193,11 @@ export default function Editor({
             <span>Run Code</span>
           </motion.button>
 
-          {/* Submit Button */}
+          {/* Help Button */}
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            onClick={onSubmit}
+            onClick={onGetHelp || onSubmit}
             disabled={isSubmitting || !value.trim()}
             className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-purple-500 to-pink-600 text-white rounded-lg font-semibold hover:from-purple-600 hover:to-pink-700 transition-all shadow-sm disabled:opacity-50 disabled:cursor-not-allowed"
           >

@@ -60,16 +60,18 @@ export async function POST(req: NextRequest) {
 
     // Prepare context for AI
     const failedTests = testResults.filter((t) => !t.passed);
-    const testSummary = failedTests
-      .map(
-        (t, i) =>
-          `Test ${i + 1}: Expected ${JSON.stringify(t.expected)} but got ${JSON.stringify(
-            t.actual
-          )} for input ${JSON.stringify(t.input)}${
-            t.error ? ` (Error: ${t.error})` : ""
-          }`
-      )
-      .join("\n");
+    const testSummary = testResults.length > 0 
+      ? failedTests
+          .map(
+            (t, i) =>
+              `Test ${i + 1}: Expected ${JSON.stringify(t.expected)} but got ${JSON.stringify(
+                t.actual
+              )} for input ${JSON.stringify(t.input)}${
+                t.error ? ` (Error: ${t.error})` : ""
+              }`
+          )
+          .join("\n")
+      : "No test results provided - this is a step-by-step help request.";
 
     const prompt = `You are CodeBuddy, a VERY patient step-by-step tutor for absolute beginners who know NOTHING about programming.
 
