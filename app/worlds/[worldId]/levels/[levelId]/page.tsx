@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { trpc } from "@/lib/trpc-client";
 import { useParams, useRouter } from "next/navigation";
 import { motion } from "framer-motion";
@@ -10,6 +10,9 @@ import Editor from "@/components/Editor";
 import RobotSandbox from "@/components/RobotSandbox";
 import FeedbackPanel from "@/components/FeedbackPanel";
 import ProgressHeader from "@/components/ProgressHeader";
+import OnboardingTour from "@/components/OnboardingTour";
+import StepChecklist from "@/components/StepChecklist";
+import HintsPanel from "@/components/HintsPanel";
 
 export default function ChallengePage() {
   const params = useParams();
@@ -20,6 +23,7 @@ export default function ChallengePage() {
   const [code, setCode] = useState("");
   const [sandboxCode, setSandboxCode] = useState("");
   const [selectedChallengeId, setSelectedChallengeId] = useState<string | null>(null);
+  const [doneSteps, setDoneSteps] = useState<string[]>([]);
 
   const { data: levels } = trpc.world.getLevels.useQuery({ worldId });
   const { data: challenges, isLoading: challengesLoading } = trpc.level.getChallenges.useQuery({
@@ -40,6 +44,13 @@ export default function ChallengePage() {
       setSelectedChallengeId(challenges[0].id);
     }
   }, [challenges, selectedChallengeId]);
+
+  // Prefill editor with starter code once
+  useEffect(() => {
+    if (challenge?.starterCode && !code) {
+      setCode(challenge.starterCode);
+    }
+  }, [challenge, code]);
 
   const handleRunCode = () => {
     setSandboxCode(code);
@@ -92,6 +103,7 @@ export default function ChallengePage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50">
       <ProgressHeader />
+      <OnboardingTour />
 
       <div className="container mx-auto px-4 py-6">
         <Link href={`/worlds/${worldId}`}>
@@ -104,7 +116,7 @@ export default function ChallengePage() {
           </motion.button>
         </Link>
 
-        <div className="grid lg:grid-cols-2 gap-6">
+        <div className="grid lg:grid-cols-[2fr_1fr] gap-6">
           {/* Left Column: Challenge Description & Editor */}
           <div className="space-y-6">
             <motion.div
@@ -148,8 +160,10 @@ export default function ChallengePage() {
             />
           </div>
 
-          {/* Right Column: Robot Sandbox & Feedback */}
+          {/* Right Column: Steps, Hints, Robot Sandbox & Feedback */}
           <div className="space-y-6">
+            <StepChecklist steps={challenge.steps ?? []} doneIds={doneSteps} />
+            <HintsPanel challenge={{ title: challenge.title, prompt: challenge.prompt }} />
             <RobotSandbox code={sandboxCode} />
 
             <FeedbackPanel
