@@ -4,7 +4,7 @@
     "levelId": "650e8400-e29b-41d4-a716-446655440001",
     "title": "Check if Positive",
     "prompt": "Maak een functie die kijkt of een getal positief is. Vergelijk het getal met 0 en geef het resultaat terug.",
-    "starterCode": "function isPositive(num) {\n  // Stap 1: vergelijk num met 0\n  // Stap 2: geef true terug als groter dan 0, anders false\n}\n",
+    "starterCode": "function isPositive(num) {\n  // Stap 1: vergelijk num met 0 (gebruik >)\n  // Stap 2: geef het resultaat terug (true of false)\n  \n  // Schrijf hier je code:\n  \n}\n",
     "steps": [
       {"id":"s1","title":"Maak een functie isPositive(num)","tip":"Begin met de functie naam."},
       {"id":"s2","title":"Vergelijk num met 0","tip":"Gebruik > om te kijken of het getal groter is dan 0."},

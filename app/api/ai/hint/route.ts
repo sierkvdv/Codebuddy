@@ -18,19 +18,30 @@ export async function POST(req: NextRequest) {
   const hasKey = !!process.env.OPENAI_API_KEY;
   if (!hasKey) {
     return NextResponse.json({
-      hint: "Try comparing the input with 0 and return that comparison.",
-      microStep: "Write: return num > 0;"
+      hint: "Denk aan: wat gebeurt er als je 5 met 0 vergelijkt? Probeer: schrijf 'return' en dan iets met >"
     });
   }
 
   const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY! });
   const prompt = `
-You are a friendly tutor for absolute beginners. Give one short hint (max 2 sentences),
-no code solution. Challenge: "${challengeContext.title}"
+You are a VERY patient tutor for absolute coding beginners. They know NOTHING about programming.
+
+Challenge: "${challengeContext.title}"
 Goal: ${challengeContext.prompt}
-User step focus: ${step ?? "n/a"}
-User code (may be empty):\n${userCode ?? "<empty>"}\n
-Return only a concise hint and (if helpful) a tiny micro-step.
+User code: ${userCode ?? "<empty>"}
+
+Give a SUPER SIMPLE hint in Dutch. Use words like:
+- "Denk aan..." (Think about...)
+- "Probeer..." (Try...)
+- "Gebruik..." (Use...)
+
+Make it like talking to a 10-year-old. NO technical jargon.
+Examples of good hints:
+- "Denk aan: wat gebeurt er als je 5 met 0 vergelijkt?"
+- "Probeer: schrijf 'return' en dan iets met >"
+- "Gebruik: het woord 'true' of 'false'"
+
+Keep it to 1-2 sentences maximum.
 `;
 
   const completion = await openai.chat.completions.create({
@@ -41,6 +52,6 @@ Return only a concise hint and (if helpful) a tiny micro-step.
   });
 
   const text = completion.choices[0]?.message?.content?.trim()
-    ?? "Think about comparing the number to 0.";
+    ?? "Denk aan: vergelijk het getal met 0. Probeer: gebruik > om te kijken of het groter is.";
   return NextResponse.json({ hint: text });
 }
