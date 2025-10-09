@@ -3,12 +3,12 @@
     "id": "750e8400-e29b-41d4-a716-446655440001",
     "levelId": "650e8400-e29b-41d4-a716-446655440001",
     "title": "Check if Positive",
-    "prompt": "Write a function called `isPositive` that takes a number and returns true if it's positive (greater than 0), otherwise returns false.",
-    "starterCode": "function isPositive(num) {\n  // Step 1: compare num with 0\n  // Step 2: return true if greater than 0, else false\n}\n",
+    "prompt": "Maak een functie die kijkt of een getal positief is. Vergelijk het getal met 0 en geef het resultaat terug.",
+    "starterCode": "function isPositive(num) {\n  // Stap 1: vergelijk num met 0\n  // Stap 2: geef true terug als groter dan 0, anders false\n}\n",
     "steps": [
-      {"id":"s1","title":"Make a function called isPositive(num)","tip":"Start with the function header."},
-      {"id":"s2","title":"Compare num to 0","tip":"Use > to check if a number is bigger than 0."},
-      {"id":"s3","title":"Return true or false","tip":"Return the comparison result directly."}
+      {"id":"s1","title":"Maak een functie isPositive(num)","tip":"Begin met de functie naam."},
+      {"id":"s2","title":"Vergelijk num met 0","tip":"Gebruik > om te kijken of het getal groter is dan 0."},
+      {"id":"s3","title":"Geef true of false terug","tip":"Geef het vergelijkingsresultaat direct terug."}
     ],
     "blockDefinition": null,
     "testCases": [
