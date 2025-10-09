@@ -49,11 +49,12 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({
         message: getMockFeedback(testResults),
         hints: [
-          "Type this: return num > 0; This means: give back true if num is bigger than 0, false if not.",
-          "The > checks if bigger, return gives back the answer.",
-          "Write: function isPositive(num) { return num > 0; }",
+          "Let me help you step by step! First, understand what we need: check if a number is positive (bigger than 0).",
+          "Step 1: Type 'function isPositive(num) {' - this starts your function.",
+          "Step 2: Type 'return num > 0;' - this checks if bigger than 0 and gives back the answer.",
+          "Step 3: Type '}' - this closes your function.",
         ],
-        encouragement: "You can do this! Here's exactly what to type! 🚀",
+        encouragement: "You can do this! Let's build it step by step! 🚀",
       });
     }
 
@@ -70,7 +71,7 @@ export async function POST(req: NextRequest) {
       )
       .join("\n");
 
-    const prompt = `You are CodeBuddy, a VERY patient tutor for absolute beginners who know NOTHING about programming.
+    const prompt = `You are CodeBuddy, a VERY patient step-by-step tutor for absolute beginners who know NOTHING about programming.
 
 A student is working on this coding challenge:
 Title: "${challengeContext.title}"
@@ -84,17 +85,37 @@ ${userCode}
 Their code failed these tests:
 ${testSummary}
 
-The student is COMPLETELY LOST and needs EXACT help. Give them:
+The student clicked "Show me the answer" - they want step-by-step help like a personal tutor. Guide them through it:
 
-1. What they should type EXACTLY (show the actual code)
-2. Why it works in simple words
-3. What each part does
+1. First, explain what the function should do in simple words
+2. Then, show them step by step what to type
+3. Explain what each part does
+4. Be encouraging and patient
 
-Examples of good responses:
-- "Type this: return num > 0; This means: give back true if num is bigger than 0, false if not. The > checks if bigger, return gives back the answer."
-- "Write: function isPositive(num) { return num > 0; } The > checks if bigger, return gives back the answer."
+Example response:
+"Let me help you step by step! 
 
-Be VERY specific. Show the actual code they need to type. They are absolute beginners!`;
+First, let's understand what we need: we want to check if a number is positive (bigger than 0).
+
+Step 1: Start with the function name
+Type: function isPositive(num) {
+
+Step 2: Check if the number is bigger than 0
+Type: return num > 0;
+
+Step 3: Close the function
+Type: }
+
+The > symbol means 'is bigger than'. Return gives back the answer (true or false).
+
+Your complete function should look like:
+function isPositive(num) {
+  return num > 0;
+}
+
+Try typing this step by step!"
+
+Be VERY patient and encouraging. Guide them like a personal tutor.`;
 
     const completion = await openai.chat.completions.create({
       model: "gpt-4",
@@ -136,13 +157,14 @@ Be VERY specific. Show the actual code they need to type. They are absolute begi
     return NextResponse.json(
       {
         message:
-          "I'm having trouble analyzing your code right now. Here's exactly what to type: return num > 0; This means: give back true if num is bigger than 0, false if not.",
+          "I'm having trouble analyzing your code right now. Let me help you step by step! First, understand what we need: check if a number is positive (bigger than 0). Step 1: Type 'function isPositive(num) {' - this starts your function. Step 2: Type 'return num > 0;' - this checks if bigger than 0 and gives back the answer. Step 3: Type '}' - this closes your function.",
         hints: [
-          "Type this: return num > 0; This means: give back true if num is bigger than 0, false if not.",
-          "The > checks if bigger, return gives back the answer.",
-          "Write: function isPositive(num) { return num > 0; }",
+          "Let me help you step by step! First, understand what we need: check if a number is positive (bigger than 0).",
+          "Step 1: Type 'function isPositive(num) {' - this starts your function.",
+          "Step 2: Type 'return num > 0;' - this checks if bigger than 0 and gives back the answer.",
+          "Step 3: Type '}' - this closes your function.",
         ],
-        encouragement: "You can do this! Here's exactly what to type! 🚀",
+        encouragement: "You can do this! Let's build it step by step! 🚀",
       },
       { status: 200 } // Still return 200 to not break the flow
     );
@@ -165,8 +187,24 @@ function getMockFeedback(testResults: any[]): string {
   const firstFailed = failedTests[0];
 
   if (firstFailed.error) {
-    return `Your code has an error: ${firstFailed.error}. Here's what to type: return num > 0; This means: give back true if num is bigger than 0, false if not.`;
+    return `Your code has an error: ${firstFailed.error}. Let me help you step by step! 
+
+First, understand what we need: check if a number is positive (bigger than 0).
+
+Step 1: Type 'function isPositive(num) {' - this starts your function.
+Step 2: Type 'return num > 0;' - this checks if bigger than 0 and gives back the answer.
+Step 3: Type '}' - this closes your function.
+
+The > symbol means 'is bigger than'. Return gives back the answer (true or false).`;
   }
 
-  return `Not quite there! Here's exactly what to type: return num > 0; This means: give back true if num is bigger than 0, false if not. The > checks if bigger, return gives back the answer.`;
+  return `Not quite there! Let me help you step by step! 
+
+First, understand what we need: check if a number is positive (bigger than 0).
+
+Step 1: Type 'function isPositive(num) {' - this starts your function.
+Step 2: Type 'return num > 0;' - this checks if bigger than 0 and gives back the answer.
+Step 3: Type '}' - this closes your function.
+
+The > symbol means 'is bigger than'. Return gives back the answer (true or false).`;
 }

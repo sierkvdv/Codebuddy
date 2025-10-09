@@ -200,7 +200,7 @@ export default function Editor({
             className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-purple-500 to-pink-600 text-white rounded-lg font-semibold hover:from-purple-600 hover:to-pink-700 transition-all shadow-sm disabled:opacity-50 disabled:cursor-not-allowed"
           >
             <Send className="w-4 h-4" />
-            <span>{isSubmitting ? "Getting help..." : "Show me the answer"}</span>
+            <span>{isSubmitting ? "Getting help..." : "Help me step by step"}</span>
           </motion.button>
         </div>
       </div>
