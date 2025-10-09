@@ -20,13 +20,13 @@ export default function HintsPanel({ challenge }:{ challenge:{ title:string; pro
 
   return (
     <div className="bg-white rounded-xl p-4 shadow-sm space-y-3">
-      <h3 className="font-semibold">Need a hint?</h3>
+      <h3 className="font-semibold">Stuck? Get the answer!</h3>
       <button
         onClick={getHint}
         disabled={loading}
         className="px-3 py-2 rounded-lg bg-amber-500 text-white disabled:opacity-60"
       >
-        {loading ? "Thinking…" : "Get Hint"}
+                {loading ? "Getting help…" : "Show me the answer"}
       </button>
       {hint && <div className="text-sm text-gray-800">{hint}</div>}
     </div>

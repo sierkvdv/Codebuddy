@@ -49,11 +49,11 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({
         message: getMockFeedback(testResults),
         hints: [
-          "Check your logic step by step",
-          "Make sure your function returns the correct value",
-          "Review the challenge requirements carefully",
+          "Type this: return num > 0; This means: give back true if num is bigger than 0, false if not.",
+          "The > checks if bigger, return gives back the answer.",
+          "Write: function isPositive(num) { return num > 0; }",
         ],
-        encouragement: "Keep practicing! You're making progress! 🚀",
+        encouragement: "You can do this! Here's exactly what to type! 🚀",
       });
     }
 
@@ -70,7 +70,7 @@ export async function POST(req: NextRequest) {
       )
       .join("\n");
 
-    const prompt = `You are CodeBuddy, a friendly and encouraging coding tutor for absolute beginners.
+    const prompt = `You are CodeBuddy, a VERY patient tutor for absolute beginners who know NOTHING about programming.
 
 A student is working on this coding challenge:
 Title: "${challengeContext.title}"
@@ -84,13 +84,17 @@ ${userCode}
 Their code failed these tests:
 ${testSummary}
 
-Provide helpful, beginner-friendly feedback that:
-1. Explains what went wrong in simple terms (avoid technical jargon)
-2. Gives a specific hint about how to fix it (without giving away the full solution)
-3. Encourages them to keep trying
-4. Uses friendly, supportive language
+The student is COMPLETELY LOST and needs EXACT help. Give them:
 
-Keep your response under 150 words and make it conversational.`;
+1. What they should type EXACTLY (show the actual code)
+2. Why it works in simple words
+3. What each part does
+
+Examples of good responses:
+- "Type this: return num > 0; This means: give back true if num is bigger than 0, false if not. The > checks if bigger, return gives back the answer."
+- "Write: function isPositive(num) { return num > 0; } The > checks if bigger, return gives back the answer."
+
+Be VERY specific. Show the actual code they need to type. They are absolute beginners!`;
 
     const completion = await openai.chat.completions.create({
       model: "gpt-4",
@@ -132,13 +136,13 @@ Keep your response under 150 words and make it conversational.`;
     return NextResponse.json(
       {
         message:
-          "I'm having trouble analyzing your code right now. Try checking your logic step by step and comparing it to the challenge requirements!",
+          "I'm having trouble analyzing your code right now. Here's exactly what to type: return num > 0; This means: give back true if num is bigger than 0, false if not.",
         hints: [
-          "Review the challenge prompt carefully",
-          "Test your code with the sample inputs",
-          "Check your function's return value",
+          "Type this: return num > 0; This means: give back true if num is bigger than 0, false if not.",
+          "The > checks if bigger, return gives back the answer.",
+          "Write: function isPositive(num) { return num > 0; }",
         ],
-        encouragement: "Don't give up! Keep experimenting! 🚀",
+        encouragement: "You can do this! Here's exactly what to type! 🚀",
       },
       { status: 200 } // Still return 200 to not break the flow
     );
@@ -161,14 +165,8 @@ function getMockFeedback(testResults: any[]): string {
   const firstFailed = failedTests[0];
 
   if (firstFailed.error) {
-    return `Your code has an error: ${firstFailed.error}. Try reviewing your syntax and logic.`;
+    return `Your code has an error: ${firstFailed.error}. Here's what to type: return num > 0; This means: give back true if num is bigger than 0, false if not.`;
   }
 
-  return `Not quite there! You passed ${totalCount - failedCount} out of ${totalCount} tests. For the input ${JSON.stringify(
-    firstFailed.input
-  )}, your code returned ${JSON.stringify(
-    firstFailed.actual
-  )} but we expected ${JSON.stringify(
-    firstFailed.expected
-  )}. Review your logic and try again!`;
+  return `Not quite there! Here's exactly what to type: return num > 0; This means: give back true if num is bigger than 0, false if not. The > checks if bigger, return gives back the answer.`;
 }

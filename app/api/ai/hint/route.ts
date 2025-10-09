@@ -18,7 +18,7 @@ export async function POST(req: NextRequest) {
   const hasKey = !!process.env.OPENAI_API_KEY;
   if (!hasKey) {
     return NextResponse.json({
-      hint: "Think about: what happens when you compare 5 with 0? Try: write 'return' and then something with >"
+      hint: "Type this: return num > 0; This means: give back true if num is bigger than 0, false if not. The > checks if bigger, return gives back the answer."
     });
   }
 
@@ -30,18 +30,17 @@ Challenge: "${challengeContext.title}"
 Goal: ${challengeContext.prompt}
 User code: ${userCode ?? "<empty>"}
 
-Give a SUPER SIMPLE hint in English. Use words like:
-- "Think about..." 
-- "Try..."
-- "Use..."
+The user is completely lost and needs EXACT help. Give them:
 
-Make it like talking to a 10-year-old. NO technical jargon.
-Examples of good hints:
-- "Think about: what happens when you compare 5 with 0?"
-- "Try: write 'return' and then something with >"
-- "Use: the word 'true' or 'false'"
+1. What they should type EXACTLY (show the code)
+2. Why it works in simple words
+3. What each part does
 
-Keep it to 1-2 sentences maximum.
+Examples:
+- "Type this: return num > 0; This means: give back true if num is bigger than 0, false if not."
+- "Write: function isPositive(num) { return num > 0; } The > checks if bigger, return gives back the answer."
+
+Be VERY specific. Show the actual code they need to type.
 `;
 
   const completion = await openai.chat.completions.create({
@@ -52,6 +51,6 @@ Keep it to 1-2 sentences maximum.
   });
 
   const text = completion.choices[0]?.message?.content?.trim()
-    ?? "Think about: compare the number with 0. Try: use > to check if it's bigger.";
+    ?? "Type this: return num > 0; This means: give back true if num is bigger than 0, false if not.";
   return NextResponse.json({ hint: text });
 }
