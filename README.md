@@ -100,6 +100,47 @@ CodeBuddy is a web application designed to teach absolute beginners how to code 
    
    Navigate to [http://localhost:3000](http://localhost:3000)
 
+## 🎯 Beginner Mode
+
+For absolute beginners, CodeBuddy now includes enhanced learning features:
+
+### Quick Setup
+
+1. **Run database migrations**
+   ```bash
+   # In Supabase SQL Editor, run:
+   # scripts/migrations/001_add_beginner_fields.sql
+   ```
+
+2. **Configure environment**
+   ```bash
+   # Fill in .env.local with:
+   NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
+   NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
+   SUPABASE_SERVICE_ROLE_KEY=your_supabase_service_key
+   OPENAI_API_KEY=your_openai_api_key  # Optional for AI hints
+   ```
+
+3. **Seed with beginner content**
+   ```bash
+   npm run seed
+   ```
+
+4. **Start learning**
+   ```bash
+   npm run dev
+   # or deploy to Vercel
+   ```
+
+### Beginner Features
+
+- 📝 **Starter Code**: Pre-filled code templates to get you started
+- 🎯 **Step-by-Step Guide**: Clear instructions broken into simple steps
+- 💡 **AI Hints**: Get help without seeing the solution
+- 🤖 **Robot Buddy**: Visual feedback as you code
+- 🎓 **Onboarding Tour**: Welcome guide for new users
+- 🌍 **Simple Language**: No jargon, just clear instructions
+
 ## 🎯 How It Works
 
 1. **Choose a World**: Start with If Forest or explore other worlds
