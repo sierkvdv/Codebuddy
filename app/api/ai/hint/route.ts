@@ -18,7 +18,7 @@ export async function POST(req: NextRequest) {
   const hasKey = !!process.env.OPENAI_API_KEY;
   if (!hasKey) {
     return NextResponse.json({
-      hint: "Denk aan: wat gebeurt er als je 5 met 0 vergelijkt? Probeer: schrijf 'return' en dan iets met >"
+      hint: "Think about: what happens when you compare 5 with 0? Try: write 'return' and then something with >"
     });
   }
 
@@ -30,16 +30,16 @@ Challenge: "${challengeContext.title}"
 Goal: ${challengeContext.prompt}
 User code: ${userCode ?? "<empty>"}
 
-Give a SUPER SIMPLE hint in Dutch. Use words like:
-- "Denk aan..." (Think about...)
-- "Probeer..." (Try...)
-- "Gebruik..." (Use...)
+Give a SUPER SIMPLE hint in English. Use words like:
+- "Think about..." 
+- "Try..."
+- "Use..."
 
 Make it like talking to a 10-year-old. NO technical jargon.
 Examples of good hints:
-- "Denk aan: wat gebeurt er als je 5 met 0 vergelijkt?"
-- "Probeer: schrijf 'return' en dan iets met >"
-- "Gebruik: het woord 'true' of 'false'"
+- "Think about: what happens when you compare 5 with 0?"
+- "Try: write 'return' and then something with >"
+- "Use: the word 'true' or 'false'"
 
 Keep it to 1-2 sentences maximum.
 `;
@@ -52,6 +52,6 @@ Keep it to 1-2 sentences maximum.
   });
 
   const text = completion.choices[0]?.message?.content?.trim()
-    ?? "Denk aan: vergelijk het getal met 0. Probeer: gebruik > om te kijken of het groter is.";
+    ?? "Think about: compare the number with 0. Try: use > to check if it's bigger.";
   return NextResponse.json({ hint: text });
 }
