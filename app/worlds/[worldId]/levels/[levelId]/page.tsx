@@ -24,6 +24,8 @@ export default function ChallengePage() {
   const [sandboxCode, setSandboxCode] = useState("");
   const [selectedChallengeId, setSelectedChallengeId] = useState<string | null>(null);
   const [doneSteps, setDoneSteps] = useState<string[]>([]);
+  const [aiHelpFeedback, setAiHelpFeedback] = useState<any>(null);
+  const [isGettingHelp, setIsGettingHelp] = useState(false);
 
   const { data: levels } = trpc.world.getLevels.useQuery({ worldId });
   const { data: challenges, isLoading: challengesLoading } = trpc.level.getChallenges.useQuery({
@@ -79,6 +81,9 @@ export default function ChallengePage() {
   const handleGetHelp = async () => {
     if (!challenge) return;
 
+    setIsGettingHelp(true);
+    setAiHelpFeedback(null);
+
     try {
       // Always call AI feedback for step-by-step help, regardless of test results
       const response = await fetch("/api/ai/feedback", {
@@ -96,16 +101,25 @@ export default function ChallengePage() {
 
       if (response.ok) {
         const data = await response.json();
-        // Store the AI feedback in a state variable to display it
-        // For now, we'll use the existing submitCode mutation to store the feedback
-        // This is a bit of a hack, but it will work
-        submitCode.mutate({
-          challengeId: challenge.id,
-          code,
+        console.log("AI Help Response:", data);
+        setAiHelpFeedback(data);
+      } else {
+        console.error("AI help response not ok:", response.status);
+        setAiHelpFeedback({
+          message: "Sorry, I'm having trouble helping right now. Try again!",
+          hints: ["Check your code syntax", "Make sure you have the right function name"],
+          encouragement: "Don't give up! 🚀"
         });
       }
     } catch (error) {
       console.error("AI help error:", error);
+      setAiHelpFeedback({
+        message: "Sorry, I'm having trouble helping right now. Try again!",
+        hints: ["Check your code syntax", "Make sure you have the right function name"],
+        encouragement: "Don't give up! 🚀"
+      });
+    } finally {
+      setIsGettingHelp(false);
     }
   };
 
@@ -190,7 +204,7 @@ export default function ChallengePage() {
               onRun={handleRunCode}
               onSubmit={handleSubmit}
               onGetHelp={handleGetHelp}
-              isSubmitting={submitCode.isPending}
+              isSubmitting={submitCode.isPending || isGettingHelp}
             />
           </div>
 
@@ -201,10 +215,12 @@ export default function ChallengePage() {
             <RobotSandbox code={sandboxCode} />
 
             <FeedbackPanel
-              feedback={submitCode.data?.feedback}
-              isLoading={submitCode.isPending}
+              feedback={aiHelpFeedback?.message || submitCode.data?.feedback}
+              isLoading={submitCode.isPending || isGettingHelp}
               success={submitCode.data?.result === "pass"}
               testResults={submitCode.data?.testResults}
+              hints={aiHelpFeedback?.hints}
+              encouragement={aiHelpFeedback?.encouragement}
             />
           </div>
         </div>

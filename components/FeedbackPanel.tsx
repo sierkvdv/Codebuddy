@@ -14,6 +14,8 @@ interface FeedbackPanelProps {
     actual?: any;
     error?: string;
   }>;
+  hints?: string[];
+  encouragement?: string;
 }
 
 /**
@@ -25,18 +27,18 @@ interface FeedbackPanelProps {
  * - Next steps (what to do next)
  * - Encouragement (motivational message)
  */
-export default function FeedbackPanel({ feedback, isLoading, success, testResults }: FeedbackPanelProps) {
+export default function FeedbackPanel({ feedback, isLoading, success, testResults, hints, encouragement }: FeedbackPanelProps) {
   // Parse feedback to extract sections (if formatted)
   const parseFeedback = () => {
     if (!feedback) return null;
 
-    // Simple parsing - in production, AI could return structured JSON
+    // Use provided hints and encouragement, or fall back to parsing
     const sections = {
       verdict: success ? "All tests passed! Great work! 🎉" : "Not quite there yet",
       issues: [] as string[],
-      hints: [] as string[],
+      hints: hints || [] as string[],
       nextSteps: [] as string[],
-      encouragement: "Keep going! You're learning!",
+      encouragement: encouragement || "Keep going! You're learning!",
     };
 
     // Extract hints (lines starting with "💡", "Hint:", etc.)
