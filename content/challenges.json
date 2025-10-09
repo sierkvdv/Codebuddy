@@ -4,6 +4,12 @@
     "levelId": "650e8400-e29b-41d4-a716-446655440001",
     "title": "Check if Positive",
     "prompt": "Write a function called `isPositive` that takes a number and returns true if it's positive (greater than 0), otherwise returns false.",
+    "starterCode": "function isPositive(num) {\n  // Step 1: compare num with 0\n  // Step 2: return true if greater than 0, else false\n}\n",
+    "steps": [
+      {"id":"s1","title":"Make a function called isPositive(num)","tip":"Start with the function header."},
+      {"id":"s2","title":"Compare num to 0","tip":"Use > to check if a number is bigger than 0."},
+      {"id":"s3","title":"Return true or false","tip":"Return the comparison result directly."}
+    ],
     "blockDefinition": null,
     "testCases": [
       {
@@ -28,6 +34,12 @@
     "levelId": "650e8400-e29b-41d4-a716-446655440002",
     "title": "Voting Age Check",
     "prompt": "Create a function called `canVote` that takes an age and returns 'Yes, you can vote!' if the age is 18 or older, otherwise returns 'Sorry, too young to vote.'",
+    "starterCode": "function canVote(age) {\n  // Step 1: check if age is 18 or older\n  // Step 2: return appropriate message\n}\n",
+    "steps": [
+      {"id":"s1","title":"Create function canVote(age)","tip":"Start with the function header that takes an age parameter."},
+      {"id":"s2","title":"Check if age >= 18","tip":"Use >= to check if age is 18 or older."},
+      {"id":"s3","title":"Return the right message","tip":"Use if-else to return different messages."}
+    ],
     "blockDefinition": null,
     "testCases": [
       {
@@ -52,6 +64,15 @@
     "levelId": "650e8400-e29b-41d4-a716-446655440003",
     "title": "Grade Evaluator",
     "prompt": "Write a function called `gradeEvaluator` that takes a score (0-100) and returns 'A' for 90+, 'B' for 80-89, 'C' for 70-79, 'D' for 60-69, and 'F' for below 60.",
+    "starterCode": "function gradeEvaluator(score) {\n  // Step 1: check if score >= 90\n  // Step 2: check if score >= 80\n  // Step 3: check if score >= 70\n  // Step 4: check if score >= 60\n  // Step 5: return 'F' for everything else\n}\n",
+    "steps": [
+      {"id":"s1","title":"Create function gradeEvaluator(score)","tip":"Start with the function header."},
+      {"id":"s2","title":"Check for A grade (90+)","tip":"Use if (score >= 90) return 'A'."},
+      {"id":"s3","title":"Check for B grade (80-89)","tip":"Use else if (score >= 80) return 'B'."},
+      {"id":"s4","title":"Check for C grade (70-79)","tip":"Use else if (score >= 70) return 'C'."},
+      {"id":"s5","title":"Check for D grade (60-69)","tip":"Use else if (score >= 60) return 'D'."},
+      {"id":"s6","title":"Return F for everything else","tip":"Use else return 'F'."}
+    ],
     "blockDefinition": null,
     "testCases": [
       {
@@ -81,6 +102,14 @@
     "levelId": "650e8400-e29b-41d4-a716-446655440004",
     "title": "Count to N",
     "prompt": "Create a function called `countToN` that takes a number n and returns an array containing numbers from 1 to n.",
+    "starterCode": "function countToN(n) {\n  // Step 1: create empty array\n  // Step 2: loop from 1 to n\n  // Step 3: add each number to array\n  // Step 4: return the array\n}\n",
+    "steps": [
+      {"id":"s1","title":"Create function countToN(n)","tip":"Start with the function header."},
+      {"id":"s2","title":"Create empty array","tip":"Use const result = []; to create an empty array."},
+      {"id":"s3","title":"Create for loop","tip":"Use for (let i = 1; i <= n; i++) to loop from 1 to n."},
+      {"id":"s4","title":"Add numbers to array","tip":"Use result.push(i) to add each number to the array."},
+      {"id":"s5","title":"Return the array","tip":"Use return result; to return the completed array."}
+    ],
     "blockDefinition": null,
     "testCases": [
       {
@@ -105,6 +134,15 @@
     "levelId": "650e8400-e29b-41d4-a716-446655440005",
     "title": "Sum Until N",
     "prompt": "Write a function called `sumUntil` that takes a number n and returns the sum of all numbers from 1 to n using a while loop.",
+    "starterCode": "function sumUntil(n) {\n  // Step 1: create variables for sum and counter\n  // Step 2: use while loop\n  // Step 3: add counter to sum\n  // Step 4: increment counter\n  // Step 5: return the sum\n}\n",
+    "steps": [
+      {"id":"s1","title":"Create function sumUntil(n)","tip":"Start with the function header."},
+      {"id":"s2","title":"Create sum and counter variables","tip":"Use let sum = 0; let i = 1; to initialize variables."},
+      {"id":"s3","title":"Create while loop","tip":"Use while (i <= n) to loop while counter is less than or equal to n."},
+      {"id":"s4","title":"Add to sum","tip":"Use sum += i; to add the current counter to the sum."},
+      {"id":"s5","title":"Increment counter","tip":"Use i++; to increment the counter."},
+      {"id":"s6","title":"Return the sum","tip":"Use return sum; to return the final result."}
+    ],
     "blockDefinition": null,
     "testCases": [
       {
@@ -129,6 +167,11 @@
     "levelId": "650e8400-e29b-41d4-a716-446655440006",
     "title": "Say Hello",
     "prompt": "Create a function called `sayHello` that takes no parameters and returns the string 'Hello, World!'.",
+    "starterCode": "function sayHello() {\n  // Step 1: return the greeting string\n}\n",
+    "steps": [
+      {"id":"s1","title":"Create function sayHello()","tip":"Start with the function header with no parameters."},
+      {"id":"s2","title":"Return the greeting","tip":"Use return 'Hello, World!'; to return the greeting string."}
+    ],
     "blockDefinition": null,
     "testCases": [
       {
@@ -143,6 +186,11 @@
     "levelId": "650e8400-e29b-41d4-a716-446655440007",
     "title": "Greet by Name",
     "prompt": "Write a function called `greet` that takes a name parameter and returns 'Hello, [name]!' (e.g., 'Hello, Alice!').",
+    "starterCode": "function greet(name) {\n  // Step 1: combine 'Hello, ' with name\n  // Step 2: add '!' at the end\n  // Step 3: return the result\n}\n",
+    "steps": [
+      {"id":"s1","title":"Create function greet(name)","tip":"Start with the function header that takes a name parameter."},
+      {"id":"s2","title":"Combine strings","tip":"Use return 'Hello, ' + name + '!'; to combine the strings."}
+    ],
     "blockDefinition": null,
     "testCases": [
       {
@@ -159,9 +207,14 @@
   },
   {
     "id": "750e8400-e29b-41d4-a716-446655440008",
-    "levelId": "650e8400-e29b-41d4-a716-446655440008",
+    "levelId": "650e8400-e29b-41d4-a716-446655440009",
     "title": "Create Fruit Array",
     "prompt": "Create a function called `createFruitArray` that returns an array containing three fruits: 'apple', 'banana', and 'orange'.",
+    "starterCode": "function createFruitArray() {\n  // Step 1: create array with three fruits\n  // Step 2: return the array\n}\n",
+    "steps": [
+      {"id":"s1","title":"Create function createFruitArray()","tip":"Start with the function header with no parameters."},
+      {"id":"s2","title":"Create array with fruits","tip":"Use return ['apple', 'banana', 'orange']; to return the array."}
+    ],
     "blockDefinition": null,
     "testCases": [
       {
@@ -176,6 +229,11 @@
     "levelId": "650e8400-e29b-41d4-a716-446655440009",
     "title": "Get Second Item",
     "prompt": "Write a function called `getSecondItem` that takes an array and returns the second item (index 1).",
+    "starterCode": "function getSecondItem(arr) {\n  // Step 1: access the item at index 1\n  // Step 2: return that item\n}\n",
+    "steps": [
+      {"id":"s1","title":"Create function getSecondItem(arr)","tip":"Start with the function header that takes an array parameter."},
+      {"id":"s2","title":"Access index 1","tip":"Use return arr[1]; to get the second item (index 1)."}
+    ],
     "blockDefinition": null,
     "testCases": [
       {
@@ -195,6 +253,11 @@
     "levelId": "650e8400-e29b-41d4-a716-446655440010",
     "title": "Create Person Object",
     "prompt": "Create a function called `createPerson` that takes a name and age, and returns an object with properties 'name' and 'age'.",
+    "starterCode": "function createPerson(name, age) {\n  // Step 1: create object with name and age properties\n  // Step 2: return the object\n}\n",
+    "steps": [
+      {"id":"s1","title":"Create function createPerson(name, age)","tip":"Start with the function header that takes name and age parameters."},
+      {"id":"s2","title":"Create object","tip":"Use return { name: name, age: age }; to return the object."}
+    ],
     "blockDefinition": null,
     "testCases": [
       {

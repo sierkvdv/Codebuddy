@@ -86,6 +86,8 @@ async function seedChallenges() {
     level_id: c.levelId,
     title: c.title,
     prompt: c.prompt,
+    starter_code: c.starterCode,
+    steps: c.steps,
     block_definition: c.blockDefinition,
     test_cases: c.testCases,
   }));

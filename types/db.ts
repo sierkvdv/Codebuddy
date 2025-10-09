@@ -55,6 +55,14 @@ export const ChallengeSchema = z.object({
   levelId: z.string().uuid(),
   title: z.string(),
   prompt: z.string(),
+  starterCode: z.string().nullable(), // Starter code for beginners
+  steps: z.array(
+    z.object({
+      id: z.string(),
+      title: z.string(),
+      tip: z.string(),
+    })
+  ).nullable(), // Step-by-step instructions
   blockDefinition: z.any().nullable(), // JSONB - block-based coding definition
   testCases: z.array(
     z.object({

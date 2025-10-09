@@ -47,6 +47,8 @@ CREATE TABLE IF NOT EXISTS public.challenges (
   level_id UUID NOT NULL REFERENCES public.levels(id) ON DELETE CASCADE,
   title TEXT NOT NULL,
   prompt TEXT NOT NULL,
+  starter_code TEXT,
+  steps JSONB,
   block_definition JSONB,
   test_cases JSONB NOT NULL,
   created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
